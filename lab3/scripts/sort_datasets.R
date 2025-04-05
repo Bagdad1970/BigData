@@ -6,3 +6,5 @@ russian_atletics_summer_data <- subset(
 	tolower(Sport) == "athletics" & toupper(Country) == "RUS"
 )
 
+
+write.csv(russian_atletics_summer_data, "~/study/R/lab3/datasets/russian_atletics_summer_data.csv")
