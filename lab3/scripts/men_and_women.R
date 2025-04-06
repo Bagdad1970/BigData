@@ -18,18 +18,18 @@ plot(men_athletics_last_6_olympics$Year, men_athletics_last_6_olympics$Total,
 		 xlab = "Год Олимпиады",
 		 ylab = "Количество медалей",
      main = "Динамика медалей России по легкой атлетике (последние 6 Олимпиад)",
-     ylim = c(0, max(total_prizes_athletics_last_6_olympics$Total) + 1),
+     ylim = c(0, max(total_prizes_athletics_last_6_olympics$Total)+5),
      xaxt = "n",
 		 cex.main=1.7,
 		 cex.lab=1.4,
-		 cex=1.3,
-		 lwd=2,
+		 cex=1.5,
+		 lwd=3,
 		 pch=19
 )
 lines(women_athletics_last_6_olympics$Year, women_athletics_last_6_olympics$Total,
 			type = "o",
 			col = "red",
-			lwd = 3, cex=1.5, pch=19)
+			lwd=3, cex=1.5, pch=19)
 axis(1, at=last_6_olympics, labels=last_6_olympics)
 legend("topright", 
        legend = c("Мужчины", "Женщины"), 
@@ -64,11 +64,12 @@ medal_matrix <- with(total_prizes_athletics_last_6_olympics, {
 })
 medal_matrix[is.na(medal_matrix)] <- 0
 
-png("barplot_men_women_prizes.png", width=1000, height=800)
+png("barplot_men_women_prizes.png", width=1000, height=700)
 barplot(medal_matrix, beside=TRUE,
         col = c("blue", "pink"),
         main = "Медали России по легкой атлетике по полу (последние 6 Олимпиад)",
         xlab = "Год Олимпиады", ylab = "Количество медалей",
         legend.text = rownames(medal_matrix),
-        args.legend = list(x = "topright", title = "Пол"))
+				ylim=c(0, max(medal_matrix)+5),
+        args.legend = list(x = "topright", title = "Пол", legend=c("Мужчины", "Женщины")))
 dev.off()
